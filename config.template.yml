@@ -1,0 +1,20 @@
+database:
+  url: bolt://localhost:7687
+  user: USER
+  password: PASSWORD
+
+token:
+  secret: SECRET
+  token_lifetime: 4h
+
+image:
+  image_path: ./images
+  background: '#ffffff'
+  hash_grouping: 4
+  hash: sha256
+  format: jpg
+  max_dimension: 1000
+
+auth:
+  refresh_token_length: 32
+  salt_rounds: 10

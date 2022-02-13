@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@wikit/neo4ogm": [
+        "libs/neo4ogm/src"
+      ],
+      "@wikit/neo4ogm/*": [
+        "libs/neo4ogm/src/*"
+      ],
+      "@wikit/config": [
+        "libs/config/src"
+      ],
+      "@wikit/config/*": [
+        "libs/config/src/*"
+      ],
+      "@wikit/database": [
+        "libs/database/src"
+      ],
+      "@wikit/database/*": [
+        "libs/database/src/*"
+      ],
+      "@wikit/utils": [
+        "libs/utils/src"
+      ],
+      "@wikit/utils/*": [
+        "libs/utils/src/*"
+      ]
+    }
+  }
+}
