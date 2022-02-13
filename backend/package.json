@@ -1,7 +1,7 @@
 {
-  "name": "wikit",
+  "name": "wikit-backend",
   "version": "0.0.1",
-  "description": "A wiki composed of small, interconnected informational fragments.",
+  "description": "The backend for Wikit.",
   "author": "Spasimir Pavlov",
   "private": true,
   "license": "MIT",
@@ -31,6 +31,7 @@
     "rxjs": "^7.2.0",
     "sharp": "^0.30.1",
     "uuid": "^8.3.2",
+    "webpack": "^5.68.0",
     "yaml": "^1.10.2"
   },
   "devDependencies": {
@@ -66,7 +67,7 @@
     "type": "git",
     "url": "git+https://github.com/spasimir21/wikit.git"
   },
-  "homepage": "https://github.com/spasimir21/wikit#readme",
+  "homepage": "https://github.com/spasimir21/wikit/tree/main/backend#readme",
   "bugs": {
     "url": "https://github.com/spasimir21/wikit/issues"
   },

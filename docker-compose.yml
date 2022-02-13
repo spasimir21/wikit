@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  wikit-auth:
+    build:
+      context: ./backend
+      dockerfile: ../containers/auth.dockerfile
+  wikit-image:
+    build:
+      context: ./backend
+      dockerfile: ../containers/image.dockerfile
+    volumes:
+      - ./images:/wikit/images
