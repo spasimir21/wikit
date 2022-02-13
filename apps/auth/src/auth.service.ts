@@ -1,9 +1,9 @@
 import { User, Token, MatchUser, MatchToken, CreateUser, CreateToken, DeleteToken } from '@wikit/database';
 import { DatabaseConnection } from '@wikit/neo4ogm';
 import { Inject, Injectable } from '@nestjs/common';
-import { RegisterDto } from './dto/registerDto';
+import { RegisterDto } from './dto/register.dto';
 import * as jsonwebtoken from 'jsonwebtoken';
-import { LoginDto } from './dto/loginDto';
+import { LoginDto } from './dto/login.dto';
 import { Config } from '@wikit/config';
 import { randomBytes } from 'crypto';
 import * as bcrypt from 'bcrypt';

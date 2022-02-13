@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpException, HttpStatus, Post, Res, UseGuards } from '@nestjs/common';
-import { RegisterDto, validateRegisterDto } from './dto/registerDto';
-import { RefreshDto, validateRefreshDto } from './dto/refreshDto';
-import { LoginDto, validateLoginDto } from './dto/loginDto';
+import { RegisterDto, validateRegisterDto } from './dto/register.dto';
+import { RefreshDto, validateRefreshDto } from './dto/refresh.dto';
+import { LoginDto, validateLoginDto } from './dto/login.dto';
 import { IgnoreExpiredTokenGuard } from '@wikit/utils';
 import { ValidateBodyGuard } from '@wikit/utils';
 import { AuthService } from './auth.service';
