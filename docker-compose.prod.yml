@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  wikit-nginx:
+    build:
+      context: ./
+      dockerfile: ./containers/nginx/nginx.prod.dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - wikit-auth
+  wikit-auth:
+    build:
+      context: ./backend
+      dockerfile: ../containers/auth.prod.dockerfile
