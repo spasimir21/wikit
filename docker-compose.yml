@@ -1,13 +1,19 @@
 version: '3'
 
 services:
+  wikit-nginx:
+    build: ./containers/nginx
+    ports:
+      - 80:80
+    depends_on:
+      - wikit-auth
   wikit-auth:
     build:
       context: ./backend
       dockerfile: ../containers/auth.dockerfile
-  wikit-image:
-    build:
-      context: ./backend
-      dockerfile: ../containers/image.dockerfile
-    volumes:
-      - ./images:/wikit/images
+  # wikit-image:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: ../containers/image.dockerfile
+  #   volumes:
+  #     - ./images:/wikit/images
