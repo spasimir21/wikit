@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  wikit-neo4j:
+    image: neo4j:4.4.4-community
+    ports:
+      - 7687:7687
+      - 7474:7474
+    volumes:
+      - ./data/neo4j:/data
   wikit-nginx:
     image: nginx:1.21.6-alpine
     ports:
@@ -9,6 +16,7 @@ services:
       - ./containers/nginx/config:/etc/nginx/conf.d
       - ./frontend/dist:/usr/share/nginx/html
     depends_on:
+      - wikit-neo4j
       - wikit-auth
   wikit-auth:
     build:
@@ -21,3 +29,5 @@ services:
       - ./backend/nest-cli.json:/wikit/nest-cli.json
       - ./backend/tsconfig.json:/wikit/tsconfig.json
       - ./backend/tsconfig.build.json:/wikit/tsconfig.build.json
+    depends_on:
+      - wikit-neo4j

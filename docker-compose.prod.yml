@@ -1,6 +1,10 @@
 version: '3'
 
 services:
+  wikit-neo4j:
+    image: neo4j:4.4.4-community
+    volumes:
+      - ./data/neo4j:/data
   wikit-nginx:
     build:
       context: ./
@@ -8,8 +12,11 @@ services:
     ports:
       - 80:80
     depends_on:
+      - wikit-neo4j
       - wikit-auth
   wikit-auth:
     build:
       context: ./backend
       dockerfile: ../containers/auth.prod.dockerfile
+    depends_on:
+      - wikit-neo4j

@@ -1,5 +1,5 @@
 database:
-  url: bolt://localhost:7687
+  url: bolt://wikit-neo4j:7687
   user: USER
   password: PASSWORD
 
