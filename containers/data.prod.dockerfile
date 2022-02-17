@@ -9,6 +9,6 @@ RUN npm install
 
 COPY ./config.yml ./config.yml
 
-COPY ./dist/apps/image/main.js ./main.js
+COPY ./dist/apps/data/main.js ./main.js
 
 CMD ["node", "./main.js"]

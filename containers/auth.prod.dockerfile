@@ -7,13 +7,8 @@ COPY ./package.json ./package.json
 
 RUN npm install
 
-COPY ./tsconfig.build.json ./tsconfig.build.json
-COPY ./tsconfig.json ./tsconfig.json
-
-COPY ./nest-cli.json ./nest-cli.json
 COPY ./config.yml ./config.yml
 
-COPY ./libs ./libs
-COPY ./apps/auth ./apps/auth
+COPY ./dist/apps/auth/main.js ./main.js
 
-CMD ["npm", "run", "start", "auth"]
+CMD ["node", "./main.js"]

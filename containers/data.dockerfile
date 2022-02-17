@@ -8,4 +8,4 @@ COPY ./package.json ./package.json
 RUN npm install onchange -g
 RUN npm install
 
-CMD ["onchange", "-i", "-k", "-p", "10000", "./dist/apps/image/main.js", "--", "node", "./dist/apps/image/main.js"]
+CMD ["onchange", "-i", "-k", "-p", "10000", "./dist/apps/data/main.js", "--", "node", "./dist/apps/data/main.js"]

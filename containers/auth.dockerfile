@@ -5,6 +5,7 @@ WORKDIR /wikit
 COPY ./package-lock.json ./package-lock.json
 COPY ./package.json ./package.json
 
+RUN npm install onchange -g
 RUN npm install
 
-CMD ["npm", "run", "start:dev", "auth"]
+CMD ["onchange", "-i", "-k", "-p", "10000", "./dist/apps/auth/main.js", "--", "node", "./dist/apps/auth/main.js"]

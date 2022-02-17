@@ -23,6 +23,15 @@
         "tsConfigPath": "apps/image/tsconfig.app.json"
       }
     },
+    "data": {
+      "type": "application",
+      "root": "apps/data",
+      "entryFile": "main",
+      "sourceRoot": "apps/data/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/data/tsconfig.app.json"
+      }
+    },
     "neo4ogm": {
       "type": "library",
       "root": "libs/neo4ogm",

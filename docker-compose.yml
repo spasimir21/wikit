@@ -18,16 +18,22 @@ services:
     depends_on:
       - wikit-neo4j
       - wikit-auth
+      - wikit-data
   wikit-auth:
     build:
       context: ./backend
       dockerfile: ../containers/auth.dockerfile
     volumes:
-      - ./backend/apps:/wikit/apps
-      - ./backend/libs:/wikit/libs
+      - ./backend/dist:/wikit/dist
       - ./backend/config.yml:/wikit/config.yml
-      - ./backend/nest-cli.json:/wikit/nest-cli.json
-      - ./backend/tsconfig.json:/wikit/tsconfig.json
-      - ./backend/tsconfig.build.json:/wikit/tsconfig.build.json
+    depends_on:
+      - wikit-neo4j
+  wikit-data:
+    build:
+      context: ./backend
+      dockerfile: ../containers/data.dockerfile
+    volumes:
+      - ./backend/dist:/wikit/dist
+      - ./backend/config.yml:/wikit/config.yml
     depends_on:
       - wikit-neo4j

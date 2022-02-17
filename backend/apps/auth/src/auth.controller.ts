@@ -1,11 +1,10 @@
-import { Body, Controller, HttpCode, HttpException, HttpStatus, Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpException, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { RegisterDto, validateRegisterDto } from './dto/register.dto';
 import { RefreshDto, validateRefreshDto } from './dto/refresh.dto';
+import { IgnoreExpiredTokenGuard, Token } from '@wikit/utils';
 import { LoginDto, validateLoginDto } from './dto/login.dto';
-import { IgnoreExpiredTokenGuard } from '@wikit/utils';
 import { ValidateBodyGuard } from '@wikit/utils';
 import { AuthService } from './auth.service';
-import { Response } from 'express';
 
 @Controller()
 class AuthController {
@@ -30,18 +29,17 @@ class AuthController {
   @Post('logout')
   @HttpCode(HttpStatus.OK)
   @UseGuards(IgnoreExpiredTokenGuard)
-  async logout(@Res() res: Response): Promise<void> {
-    await this.authService.logout(res.locals.token.raw);
-    res.send(); // Required because we inject the response
+  async logout(@Token() token: Token): Promise<void> {
+    await this.authService.logout(token.raw);
   }
 
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   @UseGuards(IgnoreExpiredTokenGuard, new ValidateBodyGuard(validateRefreshDto))
-  async refresh(@Res() res: Response, @Body() dto: RefreshDto): Promise<void> {
-    const tokens = await this.authService.refresh(res.locals.token, dto.refreshToken);
+  async refresh(@Token() token: Token, @Body() dto: RefreshDto): Promise<[string, string]> {
+    const tokens = await this.authService.refresh(token, dto.refreshToken);
     if (tokens == null) throw new HttpException('Refresh failed!', HttpStatus.BAD_REQUEST);
-    res.send(tokens);
+    return tokens;
   }
 }
 

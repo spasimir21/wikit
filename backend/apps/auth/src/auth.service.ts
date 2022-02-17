@@ -1,16 +1,17 @@
 import { User, Token, MatchUser, MatchToken, CreateUser, CreateToken, DeleteToken } from '@wikit/database';
+import { IgnoreExpiredTokenGuard, Token as TToken } from '@wikit/utils';
 import { DatabaseConnection } from '@wikit/neo4ogm';
 import { Inject, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
+import { CONFIG, Config } from '@wikit/config';
 import * as jsonwebtoken from 'jsonwebtoken';
 import { LoginDto } from './dto/login.dto';
-import { Config } from '@wikit/config';
 import { randomBytes } from 'crypto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 class AuthService {
-  constructor(@Inject('CONFIG') private readonly config: Config, private readonly database: DatabaseConnection) {}
+  constructor(@Inject(CONFIG) private readonly config: Config, private readonly database: DatabaseConnection) {}
 
   async register(dto: RegisterDto): Promise<[string, string] | null> {
     const matchingUsers = await this.database.run(MatchUser, { username: dto.username, email: dto.email });
@@ -23,7 +24,7 @@ class AuthService {
     });
 
     const refreshToken = randomBytes(this.config.auth.refresh_token_length).toString('hex');
-    const token = jsonwebtoken.sign({ uuid: user.uuid }, this.config.token.secret, {
+    const token = jsonwebtoken.sign({ uuid: user.uuid, username: dto.username }, this.config.token.secret, {
       expiresIn: this.config.token.token_lifetime
     });
 
@@ -45,7 +46,7 @@ class AuthService {
     if (!(await bcrypt.compare(dto.password, user.password))) return null;
 
     const refreshToken = randomBytes(this.config.auth.refresh_token_length).toString('hex');
-    const token = jsonwebtoken.sign({ uuid: user.uuid }, this.config.token.secret, {
+    const token = jsonwebtoken.sign({ uuid: user.uuid, username: user.username }, this.config.token.secret, {
       expiresIn: this.config.token.token_lifetime
     });
 
@@ -61,14 +62,14 @@ class AuthService {
     await this.database.run(DeleteToken, { token });
   }
 
-  async refresh(token: { raw: string; data: any }, refreshToken: string): Promise<[string, string] | null> {
+  async refresh(token: TToken, refreshToken: string): Promise<[string, string] | null> {
     const matchingTokens = await this.database.run(MatchToken, { token: token.raw, refreshToken });
     if (matchingTokens.records.length == 0) return null;
 
     await this.database.run(DeleteToken, { token: token.raw });
 
     const newRefreshToken = randomBytes(this.config.auth.refresh_token_length).toString('hex');
-    const newToken = jsonwebtoken.sign({ uuid: token.data.uuid }, this.config.token.secret, {
+    const newToken = jsonwebtoken.sign({ uuid: token.data.uuid, username: token.data.username }, this.config.token.secret, {
       expiresIn: this.config.token.token_lifetime
     });
 
