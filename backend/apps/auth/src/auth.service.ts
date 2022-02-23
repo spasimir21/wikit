@@ -1,5 +1,5 @@
 import { User, Token, MatchUser, MatchToken, CreateUser, CreateToken, DeleteToken } from '@wikit/database';
-import { IgnoreExpiredTokenGuard, Token as TToken } from '@wikit/utils';
+import { IgnoreExpiredTokenGuard, Token as IToken } from '@wikit/utils';
 import { DatabaseConnection } from '@wikit/neo4ogm';
 import { Inject, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
@@ -62,7 +62,7 @@ class AuthService {
     await this.database.run(DeleteToken, { token });
   }
 
-  async refresh(token: TToken, refreshToken: string): Promise<[string, string] | null> {
+  async refresh(token: IToken, refreshToken: string): Promise<[string, string] | null> {
     const matchingTokens = await this.database.run(MatchToken, { token: token.raw, refreshToken });
     if (matchingTokens.records.length == 0) return null;
 

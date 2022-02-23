@@ -1,9 +1,10 @@
 import { Range, Model, UUID } from '@wikit/neo4ogm';
 
-const Text = Model('Text', {
+const Relation = Model('Relation', {
   uuid: UUID,
-  text: String,
+  parent: UUID,
+  child: UUID,
   rating: Range(1, 5)
 });
 
-export { Text };
+export { Relation };

@@ -1,6 +1,15 @@
+export { CreatedRelations } from './CreatedRelations';
+export { RelationExists } from './RelationExists';
+export { CreateRelation } from './CreateRelation';
+export { CreatedWikits } from './CreatedWikits';
+export { MatchRelation } from './MatchRelation';
+export { CreatedTexts } from './CreatedTexts';
 export { CreateWikit } from './CreateWikit';
 export { DeleteToken } from './DeleteToken';
 export { CreateToken } from './CreateToken';
+export { MatchWikit } from './MatchWikit';
 export { CreateUser } from './CreateUser';
+export { CreateText } from './CreateText';
 export { MatchToken } from './MatchToken';
 export { MatchUser } from './MatchUser';
+export { MatchText } from './MatchText';
