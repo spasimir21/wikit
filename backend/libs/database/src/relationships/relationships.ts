@@ -4,6 +4,7 @@ import { Authenticates } from './Authenticates';
 import { Describes } from './Describes';
 import { CreatedBy } from './CreatedBy';
 import { RelatesTo } from './RelatesTo';
+import { Rated } from './Rated';
 
-export { Authenticates, CreatedBy, Describes, RelatesTo, ParentRelation, ChildRelation };
-export default [Authenticates, CreatedBy, Describes, RelatesTo, ParentRelation, ChildRelation];
+export { Authenticates, CreatedBy, Describes, RelatesTo, ParentRelation, ChildRelation, Rated };
+export default [Authenticates, CreatedBy, Describes, RelatesTo, ParentRelation, ChildRelation, Rated];

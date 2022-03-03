@@ -15,6 +15,7 @@ services:
       - wikit-neo4j
       - wikit-auth
       - wikit-data
+      - wikit-rating
   wikit-auth:
     build:
       context: ./backend
@@ -25,5 +26,11 @@ services:
     build:
       context: ./backend
       dockerfile: ../containers/data.prod.dockerfile
+    depends_on:
+      - wikit-neo4j
+  wikit-rating:
+    build:
+      context: ./backend
+      dockerfile: ../containers/rating.prod.dockerfile
     depends_on:
       - wikit-neo4j

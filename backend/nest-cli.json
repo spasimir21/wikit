@@ -67,6 +67,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/utils/tsconfig.lib.json"
       }
+    },
+    "rating": {
+      "type": "application",
+      "root": "apps/rating",
+      "entryFile": "main",
+      "sourceRoot": "apps/rating/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/rating/tsconfig.app.json"
+      }
     }
   }
 }

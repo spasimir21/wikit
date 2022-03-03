@@ -4,7 +4,7 @@ const Relation = Model('Relation', {
   uuid: UUID,
   parent: UUID,
   child: UUID,
-  rating: Range(1, 5)
+  rating: Range(1, 100)
 });
 
 export { Relation };

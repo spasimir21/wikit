@@ -19,6 +19,7 @@ services:
       - wikit-neo4j
       - wikit-auth
       - wikit-data
+      - wikit-rating
   wikit-auth:
     build:
       context: ./backend
@@ -32,6 +33,15 @@ services:
     build:
       context: ./backend
       dockerfile: ../containers/data.dockerfile
+    volumes:
+      - ./backend/dist:/wikit/dist
+      - ./backend/config.yml:/wikit/config.yml
+    depends_on:
+      - wikit-neo4j
+  wikit-rating:
+    build:
+      context: ./backend
+      dockerfile: ../containers/rating.dockerfile
     volumes:
       - ./backend/dist:/wikit/dist
       - ./backend/config.yml:/wikit/config.yml

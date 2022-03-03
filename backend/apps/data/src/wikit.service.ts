@@ -22,6 +22,7 @@ class WikitService {
 
   async createWikit(uuid: string, title: string, text: string, parents: string[], children: string[]): Promise<string> {
     if (title.length < 3 || title.length > 100) throw new Error('Title too long or too short!');
+    if (text.length < 10 || text.length > 2000) throw new Error('Text too long or too short!');
     if (children.length > 10) throw new Error('Too many children!');
     if (parents.length > 5) throw new Error('Too many parents!');
 
