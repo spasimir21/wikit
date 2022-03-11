@@ -13,6 +13,11 @@ class RelationResolver {
     return await this.relationService.getRelation(uuid);
   }
 
+  @Query(() => [RelationDTO])
+  async relations(@Args('uuids', { type: () => [ID] }) uuids: string[]): Promise<RelationDTO[]> {
+    return await this.relationService.getRelations(uuids);
+  }
+
   @Mutation(() => ID, { nullable: true })
   @UseGuards(GQLTokenGuard, GQLLoggedInGuard)
   async createRelation(

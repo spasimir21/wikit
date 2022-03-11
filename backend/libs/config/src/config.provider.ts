@@ -3,7 +3,7 @@ import { readFile } from 'fs/promises';
 import { Config } from './config';
 import * as yaml from 'yaml';
 
-const CONFIG = 'CONFIG';
+const CONFIG = Symbol('CONFIG');
 
 async function loadConfig(path: string): Promise<Config> {
   const source = await readFile(path);

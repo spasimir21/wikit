@@ -1,22 +1,20 @@
-import { CreatedRelations, CreatedTexts, CreatedWikits } from '@wikit/database';
-import { CreationsDTO } from './model/creations.model';
+import { CreationType } from './model/creationType.enum';
+import { CreationDTO } from './model/creation.model';
 import { DatabaseConnection } from '@wikit/neo4ogm';
+import { GetCreations } from '@wikit/database';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 class CreationsService {
   constructor(private readonly database: DatabaseConnection) {}
 
-  async getCreations(uuid: string): Promise<CreationsDTO> {
-    const wikits = await this.database.run(CreatedWikits, { uuid });
-    const texts = await this.database.run(CreatedTexts, { uuid });
-    const relations = await this.database.run(CreatedRelations, { uuid });
+  async getCreations(uuid: string): Promise<CreationDTO[]> {
+    const creationsResult = await this.database.run(GetCreations, { uuid });
 
-    return {
-      wikits: wikits.records.map(record => record.wikit),
-      texts: texts.records.map(record => record.text),
-      relations: relations.records.map(record => record.relation)
-    };
+    return creationsResult.records.map(record => ({
+      type: record.type.toUpperCase() as CreationType,
+      uuid: record.uuid
+    }));
   }
 }
 

@@ -1,7 +1,13 @@
 database:
   url: bolt://wikit-neo4j:7687
-  user: USER
+  user: neo4j
   password: PASSWORD
+
+elasticsearch:
+  node: http://wikit-elasticsearch:9200
+  user: elastic
+  password: PASSWORD
+  index: text
 
 token:
   secret: SECRET

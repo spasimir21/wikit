@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ID, ObjectType } from '@nestjs/graphql';
 import { UserDTO } from './user.model';
 
 @ObjectType()
@@ -12,7 +12,7 @@ class RelationDTO {
   @Field(() => ID)
   child: string;
 
-  @Field(() => Number)
+  @Field(() => Float)
   rating: number;
 
   @Field(() => UserDTO)

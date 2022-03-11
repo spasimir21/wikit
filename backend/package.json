@@ -6,7 +6,6 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
@@ -21,6 +20,7 @@
     "test:e2e": "jest --config ./apps/wikit/test/jest-e2e.json"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^8.0.0",
     "@nestjs/apollo": "^10.0.2",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
@@ -99,7 +99,8 @@
       "^@wikit/neo4ogm(|/.*)$": "<rootDir>/libs/neo4ogm/src/$1",
       "^@wikit/config(|/.*)$": "<rootDir>/libs/config/src/$1",
       "^@wikit/database(|/.*)$": "<rootDir>/libs/database/src/$1",
-      "^@wikit/utils(|/.*)$": "<rootDir>/libs/utils/src/$1"
+      "^@wikit/utils(|/.*)$": "<rootDir>/libs/utils/src/$1",
+      "^@wikit/elasticsearch(|/.*)$": "<rootDir>/libs/elasticsearch/src/$1"
     }
   }
 }

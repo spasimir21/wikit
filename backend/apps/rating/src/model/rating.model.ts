@@ -2,7 +2,7 @@ import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { RatingType } from './ratingType.enum';
 
 @ObjectType()
-class Rating {
+class RatingDTO {
   @Field(() => RatingType)
   type: RatingType;
 
@@ -13,4 +13,4 @@ class Rating {
   rating: number;
 }
 
-export { Rating };
+export { RatingDTO };

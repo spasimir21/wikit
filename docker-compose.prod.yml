@@ -5,6 +5,14 @@ services:
     image: neo4j:4.4.4-community
     volumes:
       - ./data/neo4j:/data
+  wikit-elasticsearch:
+    build:
+      context: ./containers
+      dockerfile: ./elasticsearch.dockerfile
+    environment:
+      discovery.type: single-node
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
   wikit-nginx:
     build:
       context: ./
@@ -12,10 +20,10 @@ services:
     ports:
       - 80:80
     depends_on:
-      - wikit-neo4j
       - wikit-auth
       - wikit-data
       - wikit-rating
+      - wikit-search
   wikit-auth:
     build:
       context: ./backend
@@ -28,9 +36,17 @@ services:
       dockerfile: ../containers/data.prod.dockerfile
     depends_on:
       - wikit-neo4j
+      - wikit-elasticsearch
   wikit-rating:
     build:
       context: ./backend
       dockerfile: ../containers/rating.prod.dockerfile
     depends_on:
       - wikit-neo4j
+      - wikit-elasticsearch
+  wikit-search:
+    build:
+      context: ./backend
+      dockerfile: ../containers/search.prod.dockerfile
+    depends_on:
+      - wikit-elasticsearch

@@ -1,8 +1,8 @@
 import { User, Token, MatchUser, MatchToken, CreateUser, CreateToken, DeleteToken } from '@wikit/database';
-import { IgnoreExpiredTokenGuard, Token as IToken } from '@wikit/utils';
 import { DatabaseConnection } from '@wikit/neo4ogm';
 import { Inject, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
+import { Token as IToken } from '@wikit/utils';
 import { CONFIG, Config } from '@wikit/config';
 import * as jsonwebtoken from 'jsonwebtoken';
 import { LoginDto } from './dto/login.dto';

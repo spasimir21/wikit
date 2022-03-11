@@ -1,4 +1,5 @@
-import { MatchWikit, CreateWikit, Wikit } from '@wikit/database';
+import { MatchWikit, CreateWikit, Wikit, FindWikits, MatchWikits } from '@wikit/database';
+import { WikitStatsDTO } from './model/wikit-stats.model';
 import { RelationService } from './relation.service';
 import { DatabaseConnection } from '@wikit/neo4ogm';
 import { WikitDTO } from './model/wikit.model';
@@ -18,6 +19,24 @@ class WikitService {
     if (result.records.length == 0) return null;
     const { wikit, user } = result.records[0];
     return { uuid: wikit.uuid, title: wikit.title, created_by: { uuid: user.uuid, username: user.username } };
+  }
+
+  async getWikits(uuids: string[]): Promise<WikitDTO[]> {
+    const result = await this.database.run(MatchWikits, { uuids });
+    return result.records.map(({ wikit, user }) => ({
+      uuid: wikit.uuid,
+      title: wikit.title,
+      created_by: { uuid: user.uuid, username: user.username }
+    }));
+  }
+
+  async findWikits(title: string): Promise<WikitStatsDTO[]> {
+    const result = await this.database.run(FindWikits, { title });
+    return result.records.map(record => ({
+      uuid: record.wikit,
+      textCount: Number(record.text_count),
+      averageRating: record.average_rating
+    }));
   }
 
   async createWikit(uuid: string, title: string, text: string, parents: string[], children: string[]): Promise<string> {

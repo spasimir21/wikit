@@ -6,6 +6,12 @@ interface Config {
     user: string;
     password: string;
   };
+  elasticsearch: {
+    node: string;
+    user: string;
+    password: string;
+    index: string;
+  };
   token: {
     secret: string;
     token_lifetime: string;

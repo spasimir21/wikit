@@ -1,5 +1,6 @@
 import { GQLTokenGuard, GQLLoggedInGuard, GQLToken, Token } from '@wikit/utils';
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { WikitStatsDTO } from './model/wikit-stats.model';
 import { WikitService } from './wikit.service';
 import { WikitDTO } from './model/wikit.model';
 import { UseGuards } from '@nestjs/common';
@@ -11,6 +12,16 @@ class WikitResolver {
   @Query(() => WikitDTO, { nullable: true })
   async wikit(@Args('uuid', { type: () => ID }) uuid: string): Promise<WikitDTO | null> {
     return await this.wikitService.getWikit(uuid);
+  }
+
+  @Query(() => [WikitDTO])
+  async wikits(@Args('uuids', { type: () => [ID] }) uuids: string[]): Promise<WikitDTO[]> {
+    return await this.wikitService.getWikits(uuids);
+  }
+
+  @Query(() => [WikitStatsDTO])
+  async findWikits(@Args('title') title: string): Promise<WikitStatsDTO[]> {
+    return await this.wikitService.findWikits(title);
   }
 
   @Mutation(() => ID)

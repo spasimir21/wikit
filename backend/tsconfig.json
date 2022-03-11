@@ -41,6 +41,12 @@
       ],
       "@wikit/utils/*": [
         "libs/utils/src/*"
+      ],
+      "@wikit/elasticsearch": [
+        "libs/elasticsearch/src"
+      ],
+      "@wikit/elasticsearch/*": [
+        "libs/elasticsearch/src/*"
       ]
     }
   }

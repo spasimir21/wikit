@@ -5,8 +5,6 @@ enum RatingType {
   RELATION = 'RELATION'
 }
 
-registerEnumType(RatingType, {
-  name: 'RatingType'
-});
+registerEnumType(RatingType, { name: 'RatingType' });
 
 export { RatingType };

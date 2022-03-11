@@ -1,15 +1,15 @@
 import { GQLTokenGuard, GQLLoggedInGuard, GQLToken, Token } from '@wikit/utils';
 import { Args, ID, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { RatingService } from './rating.service';
-import { Rating } from './model/rating.model';
+import { RatingDTO } from './model/rating.model';
 import { UseGuards } from '@nestjs/common';
 
 @Resolver()
 class RatingResolver {
   constructor(private readonly ratingService: RatingService) {}
 
-  @Query(() => [Rating])
-  async ratings(@Args('uuid', { type: () => ID }) uuid: string): Promise<Rating[]> {
+  @Query(() => [RatingDTO])
+  async ratings(@Args('uuid', { type: () => ID }) uuid: string): Promise<RatingDTO[]> {
     return await this.ratingService.getRatings(uuid);
   }
 

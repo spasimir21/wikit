@@ -1,0 +1,93 @@
+{
+  "wikits": [
+    "Bees",
+    "Bee Wings",
+    "Bee Species",
+    "Honey Bees",
+    "Bumblebees",
+    "Stingless Bees",
+    "Mason Bees",
+    "Carpenter Bees",
+    "Leafcutter Bees",
+    "Sweat Bees",
+    "Honey",
+    "Glucose",
+    "Sugar"
+  ],
+  "texts": {
+    "Bees": [
+      "Bees are insects with wings closely related to wasps and ants, known for their role in pollination and, in the case of the best-known bee species, the western honey bee, for producing honey. Bees are a monophyletic lineage within the superfamily Apoidea. They are presently considered a clade, called Anthophila. There are over 16,000 known species of bees in seven recognized biological families. Some species – including honey bees, bumblebees, and stingless bees – live socially in colonies while most species (>90%) – including mason bees, carpenter bees, leafcutter bees, and sweat bees – are solitary.",
+      "Bees are found on every continent except for Antarctica, in every habitat on the planet that contains insect-pollinated flowering plants. The most common bees in the Northern Hemisphere are the Halictidae, or sweat bees, but they are small and often mistaken for wasps or flies. Bees range in size from tiny stingless bee species, whose workers are less than 2 millimetres (0.08 in) long, to Megachile pluto, the largest species of leafcutter bee, whose females can attain a length of 39 millimetres (1.54 in).",
+      "Bees feed on nectar and pollen, the former primarily as an energy source and the latter primarily for protein and other nutrients. Most pollen is used as food for their larvae. Vertebrate predators of bees include primates and birds such as bee-eaters; insect predators include beewolves and dragonflies."
+    ],
+    "Bee Wings": [
+      "The thorax has three segments, each with a pair of robust legs, and a pair of membranous wings on the hind two segments. The front legs of corbiculate bees bear combs for cleaning the antennae, and in many species the hind legs bear pollen baskets, flattened sections with incurving hairs to secure the collected pollen. The wings are synchronised in flight, and the somewhat smaller hind wings connect to the forewings by a row of hooks along their margin which connect to a groove in the forewing."
+    ],
+    "Bee Species": [
+      "Some species – including honey bees, bumblebees, and stingless bees – live socially in colonies while most species (>90%) – including mason bees, carpenter bees, leafcutter bees, and sweat bees – are solitary."
+    ],
+    "Honey Bees": [
+      "A honey bee (also spelled honeybee) is a eusocial flying insect within the genus Apis of the bee clade, all native to Eurasia. They are known for their construction of perennial colonial nests from wax, the large size of their colonies, and surplus production and storage of honey, distinguishing their hives as a prized foraging target of many animals, including honey badgers, bears and human hunter-gatherers. Only eight surviving species of honey bee are recognized, with a total of 43 subspecies, though historically 7 to 11 species are recognized. Honey bees represent only a small fraction of the roughly 20,000 known species of bees.",
+      "The best known honey bee is the western honey bee (Apis mellifera), which has been domesticated for honey production and crop pollination; the only other domesticated bee is the eastern honey bee (Apis cerana), which occurs in South Asia. Some other types of related bees produce and store honey, and have been kept by humans for that purpose, including the stingless bees, but only members of the genus Apis are true honey bees. Modern humans also value the wax for use in making candles, soap, lip balms, and various cosmetics."
+    ],
+    "Bumblebees": [
+      "A bumblebee (or bumble bee, bumble-bee, or humble-bee) is any of over 250 species in the genus Bombus, part of Apidae, one of the bee families. This genus is the only extant group in the tribe Bombini, though a few extinct related genera (e.g., Calyptapis) are known from fossils. They are found primarily in higher altitudes or latitudes in the Northern Hemisphere, although they are also found in South America, where a few lowland tropical species have been identified. European bumblebees have also been introduced to New Zealand and Tasmania. Female bumblebees can sting repeatedly, but generally ignore humans and other animals.",
+      "Most bumblebees are social insects that form colonies with a single queen. The colonies are smaller than those of honey bees, growing to as few as 50 individuals in a nest. Cuckoo bumblebees are brood parasitic and do not make nests or form colonies; their queens aggressively invade the nests of other bumblebee species, kill the resident queens and then lay their own eggs, which are cared for by the resident workers. Cuckoo bumblebees were previously classified as a separate genus, but are now usually treated as members of Bombus."
+    ],
+    "Stingless Bees": [
+      "Stingless bees, sometimes called stingless honey bees or simply meliponines, are a large group of bees (about 550 described species), comprising the tribe Meliponini (or subtribe Meliponina according to other authors). They belong in the family Apidae, and are closely related to common honey bees, carpenter bees, orchid bees, and bumblebees. Meliponines have stingers, but they are highly reduced and cannot be used for defense, though these bees exhibit other defensive behaviors and mechanisms. Meliponines are not the only type of \"stingless\" bee; all male bees and many female bees of several other families, such as Andrenidae, also cannot sting. Some stingless bees have painful and powerful bites."
+    ],
+    "Mason Bees": [
+      "Mason bee is a name now commonly used for species of bees in the genus Osmia, of the family Megachilidae. Mason bees are named for their habit of using mud or other \"masonry\" products in constructing their nests, which are made in naturally occurring gaps such as between cracks in stones or other small dark cavities. When available, some species preferentially use hollow stems or holes in wood made by wood-boring insects.",
+      "Species of the genus include the orchard mason bee O. lignaria, the blueberry bee O. ribifloris, the hornfaced bee O. cornifrons, and the red mason bee O. bicornis. The former two are native to the Americas, the third to eastern Asia, and the latter to the European continent, although O. lignaria and O. cornifrons have been moved from their native ranges for commercial purposes. Over 300 species are found across the Northern Hemisphere. Most occur in temperate habitats within the Palearctic and Nearctic zones, and are active from spring through late summer.",
+      "Osmia species are frequently metallic green or blue, although many are blackish and at least one rust-red. Most have black ventral scopae which are difficult to notice unless laden with pollen. They have arolia between their claws, unlike Megachile or Anthidium species."
+    ],
+    "Carpenter Bees": [
+      "Carpenter bees are species in the genus Xylocopa of the subfamily Xylocopinae. The genus includes some 500 bees in 31 subgenera. The common name \"carpenter bee\" derives from their nesting behavior; nearly all species burrow into hard plant material such as dead wood or bamboo. The main exceptions are species in the subgenus Proxylocopa; they dig nesting tunnels in suitable soil."
+    ],
+    "Leafcutter Bees": [
+      "The genus Megachile is a cosmopolitan group of solitary bees, often called leafcutter bees or leafcutting bees; it also includes the called resin bees and mortar bees. While other genera within the family Megachilidae may chew leaves or petals into fragments to build their nests, certain species within Megachile neatly cut pieces of leaves or petals, hence their common name. This is one of the largest genera of bees, with more than 1500 species in over 50 subgenera. The alfalfa leafcutter bee (Megachile rotundata) is managed on a commercial scale for crop pollination, and has been introduced by humans to various regions around the world."
+    ],
+    "Sweat Bees": [
+      "Halictidae is the second-largest family of bees (clade Anthophila) with nearly 4,500 species. Halictid species are an extremely diverse group that can vary greatly in appearance. These bees occur all over the world and are found on every continent. Usually dark-colored (frequently brown or black) and often metallic, halictids are found in various sizes, colors and patterns. Several species are all or partly green and a few are red, purple, or blue. A number of them have yellow markings, especially the males, which commonly have yellow faces, a pattern widespread among the various families of bees. The family is one of many with short tongues and is best distinguished by the arcuate (strongly curved) basal vein found on the wing. Females in this family tend to be larger than the males.",
+      "They are commonly referred to as \"sweat bees\" (especially the smaller species), as they are often attracted to perspiration."
+    ],
+    "Honey": [
+      "Honey is a sweet, viscous food substance made by honey bees and some other bees. Bees produce honey from the sugary secretions of plants (floral nectar) or from secretions of other insects (such as honeydew), by regurgitation, enzymatic activity, and water evaporation. Honey bees store honey in wax structures called honeycombs, whereas stingless bees store honey in pots made of wax and resin. The variety of honey produced by honey bees (the genus Apis) is the best-known, due to its worldwide commercial production and human consumption. Honey is collected from wild bee colonies, or from hives of domesticated bees, a practice known as beekeeping or apiculture (meliponiculture in the case of stingless bees).",
+      "Honey gets its sweetness from the monosaccharides fructose and glucose, and has about the same relative sweetness as sucrose (table sugar). Fifteen millilitres (1 US tablespoon) of honey provides around 190 kilojoules (46 kilocalories) of food energy. It has attractive chemical properties for baking and a distinctive flavor when used as a sweetener. Most microorganisms do not grow in honey, so sealed honey does not spoil, even after thousands of years.",
+      "Honey use and production have a long and varied history as an ancient activity. Several cave paintings in Cuevas de la Araña in Spain depict humans foraging for honey at least 8,000 years ago. Large-scale meliponiculture has been practiced by the Mayans since pre-Columbian times."
+    ],
+    "Glucose": [
+      "Glucose is a simple sugar with the molecular formula C6H12O6. Glucose is the most abundant monosaccharide, a subcategory of carbohydrates. Glucose is mainly made by plants and most algae during photosynthesis from water and carbon dioxide, using energy from sunlight, where it is used to make cellulose in cell walls, the most abundant carbohydrate in the world.",
+      "Glucose, as intravenous sugar solution, is on the World Health Organization's List of Essential Medicines, the safest and most effective medicines needed in a health system. It is also on the list in combination with sodium chloride.",
+      "In energy metabolism, glucose is the most important source of energy in all organisms. Glucose for metabolism is stored as a polymer, in plants mainly as starch and amylopectin, and in animals as glycogen. Glucose circulates in the blood of animals as blood sugar. The naturally occurring form of glucose is d-glucose, while l-glucose is produced synthetically in comparatively small amounts and is of lesser importance[citation needed]. Glucose is a monosaccharide containing six carbon atoms and an aldehyde group, and is therefore an aldohexose. The glucose molecule can exist in an open-chain (acyclic) as well as ring (cyclic) form. Glucose is naturally occurring and is found in its free state in fruits and other parts of plants. In animals, glucose is released from the breakdown of glycogen in a process known as glycogenolysis."
+    ],
+    "Sugar": [
+      "Sugar is the generic name for sweet-tasting, soluble carbohydrates, many of which are used in food. Simple sugars, also called monosaccharides, include glucose, fructose, and galactose. Compound sugars, also called disaccharides or double sugars, are molecules made of two monosaccharides joined by a glycosidic bond. Common examples are sucrose (glucose + fructose), lactose (glucose + galactose), and maltose (two molecules of glucose). Table sugar, granulated sugar, and regular sugar refer to sucrose, a disaccharide composed of glucose and fructose. In the body, compound sugars are hydrolysed into simple sugars.",
+      "Longer chains of monosaccharides (>2) are not regarded as sugars, and are called oligosaccharides or polysaccharides. Starch is a glucose polymer found in plants, and is the most abundant source of energy in human food. Some other chemical substances, such as glycerol and sugar alcohols, may have a sweet taste, but are not classified as sugar."
+    ]
+  },
+  "relations": {
+    "Bees": ["Bee Wings", "Bee Species", "Honey"],
+    "Bee Wings": [],
+    "Bee Species": [
+      "Honey Bees",
+      "Bumblebees",
+      "Stingless Bees",
+      "Mason Bees",
+      "Carpenter Bees",
+      "Leafcutter Bees",
+      "Sweat Bees"
+    ],
+    "Honey Bees": ["Bees", "Bee Wings"],
+    "Bumblebees": ["Bees", "Bee Wings"],
+    "Stingless Bees": ["Bees", "Bee Wings"],
+    "Mason Bees": ["Bees", "Bee Wings"],
+    "Carpenter Bees": ["Bees", "Bee Wings"],
+    "Leafcutter Bees": ["Bees", "Bee Wings"],
+    "Sweat Bees": ["Bees", "Bee Wings"],
+    "Honey": ["Glucose"],
+    "Glucose": ["Sugar"],
+    "Sugar": ["Glucose"]
+  }
+}

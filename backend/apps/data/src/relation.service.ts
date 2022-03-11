@@ -1,4 +1,4 @@
-import { Relation, CreateRelation, MatchRelation, RelationExists } from '@wikit/database';
+import { Relation, CreateRelation, MatchRelation, RelationExists, MatchRelations } from '@wikit/database';
 import { RelationDTO } from './model/relation.model';
 import { DatabaseConnection } from '@wikit/neo4ogm';
 import { Injectable } from '@nestjs/common';
@@ -18,6 +18,17 @@ class RelationService {
       rating: relation.rating,
       created_by: { uuid: user.uuid, username: user.username }
     };
+  }
+
+  async getRelations(uuids: string[]): Promise<RelationDTO[]> {
+    const result = await this.database.run(MatchRelations, { uuids });
+    return result.records.map(({ relation, user }) => ({
+      uuid: relation.uuid,
+      parent: relation.parent,
+      child: relation.child,
+      rating: relation.rating,
+      created_by: { uuid: user.uuid, username: user.username }
+    }));
   }
 
   async createRelation(uuid: string, parent: string, child: string): Promise<string | null> {

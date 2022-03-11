@@ -1,13 +1,13 @@
 import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { CreationsService } from './creations.service';
-import { CreationsDTO } from './model/creations.model';
+import { CreationDTO } from './model/creation.model';
 
 @Resolver()
 class CreationsResolver {
   constructor(private readonly creationsService: CreationsService) {}
 
-  @Query(() => CreationsDTO)
-  async creations(@Args('uuid', { type: () => ID }) uuid: string): Promise<CreationsDTO> {
+  @Query(() => [CreationDTO])
+  async creations(@Args('uuid', { type: () => ID }) uuid: string): Promise<CreationDTO[]> {
     return await this.creationsService.getCreations(uuid);
   }
 }

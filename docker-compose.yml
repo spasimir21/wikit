@@ -3,11 +3,24 @@ version: '3'
 services:
   wikit-neo4j:
     image: neo4j:4.4.4-community
+    environment:
+      NEO4J_AUTH: neo4j/PASSWORD
     ports:
       - 7687:7687
       - 7474:7474
     volumes:
       - ./data/neo4j:/data
+  wikit-elasticsearch:
+    build:
+      context: ./containers
+      dockerfile: ./elasticsearch.dockerfile
+    environment:
+      discovery.type: single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
   wikit-nginx:
     image: nginx:1.21.6-alpine
     ports:
@@ -16,10 +29,10 @@ services:
       - ./containers/nginx/config:/etc/nginx/conf.d
       - ./frontend/dist:/usr/share/nginx/html
     depends_on:
-      - wikit-neo4j
       - wikit-auth
       - wikit-data
       - wikit-rating
+      - wikit-search
   wikit-auth:
     build:
       context: ./backend
@@ -38,6 +51,7 @@ services:
       - ./backend/config.yml:/wikit/config.yml
     depends_on:
       - wikit-neo4j
+      - wikit-elasticsearch
   wikit-rating:
     build:
       context: ./backend
@@ -47,3 +61,13 @@ services:
       - ./backend/config.yml:/wikit/config.yml
     depends_on:
       - wikit-neo4j
+      - wikit-elasticsearch
+  wikit-search:
+    build:
+      context: ./backend
+      dockerfile: ../containers/search.dockerfile
+    volumes:
+      - ./backend/dist:/wikit/dist
+      - ./backend/config.yml:/wikit/config.yml
+    depends_on:
+      - wikit-elasticsearch

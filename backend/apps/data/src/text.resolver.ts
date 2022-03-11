@@ -13,6 +13,11 @@ class TextResolver {
     return await this.textService.getText(uuid);
   }
 
+  @Query(() => [TextDTO])
+  async texts(@Args('uuids', { type: () => [ID] }) uuids: string[]): Promise<TextDTO[]> {
+    return await this.textService.getTexts(uuids);
+  }
+
   @Mutation(() => ID, { nullable: true })
   @UseGuards(GQLTokenGuard, GQLLoggedInGuard)
   async createText(
