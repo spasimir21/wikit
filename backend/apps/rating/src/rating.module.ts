@@ -1,6 +1,5 @@
 import { DatabaseProvider, models, relationships } from '@wikit/database';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ElasticsearchProvider } from '@wikit/elasticsearch';
 import { RatingResolver } from './rating.resolver';
 import { RatingService } from './rating.service';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -15,13 +14,7 @@ import { Module } from '@nestjs/common';
       // playground: false
     })
   ],
-  providers: [
-    ConfigProvider('./config.yml'),
-    DatabaseProvider(models, relationships),
-    ElasticsearchProvider,
-    RatingService,
-    RatingResolver
-  ]
+  providers: [ConfigProvider('./config.yml'), DatabaseProvider(models, relationships), RatingService, RatingResolver]
 })
 class RatingModule {}
 

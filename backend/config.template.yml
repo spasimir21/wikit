@@ -3,12 +3,6 @@ database:
   user: neo4j
   password: PASSWORD
 
-elasticsearch:
-  node: http://wikit-elasticsearch:9200
-  user: elastic
-  password: PASSWORD
-  index: text
-
 token:
   secret: SECRET
   token_lifetime: 4h

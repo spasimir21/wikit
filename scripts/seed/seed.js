@@ -166,14 +166,14 @@ async function seed() {
   }
 
   for (let i = 0; i < texts.length; i++) {
-    for (let j = 1; j <= 3; j++) {
+    for (let j = 1; j <= 5; j++) {
       console.log(`Rating Text ${i + 1}/${texts.length} #${j}...`);
       await rateText(texts[i], Math.floor(Math.random() * 5) + 1, random(tokens));
     }
   }
 
   for (let i = 0; i < relations.length; i++) {
-    for (let j = 1; j <= 3; j++) {
+    for (let j = 1; j <= 5; j++) {
       console.log(`Rating Relation ${i + 1}/${relations.length} #${j}...`);
       await rateRelation(relations[i], Math.floor(Math.random() * 5) + 1, random(tokens));
     }

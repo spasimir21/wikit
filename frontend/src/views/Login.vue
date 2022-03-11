@@ -41,8 +41,8 @@ after((error, result) => {
     <div class="login-container flex-container">
       <div class="flex-container">
         <h1>Login</h1>
-        <input type="text" placeholder="Username or Email" v-model="form.usernameOrEmail" />
-        <input type="password" placeholder="Password" v-model="form.password" />
+        <input type="text" name="username" placeholder="Username or Email" v-model="form.usernameOrEmail" />
+        <input type="password" name="password" placeholder="Password" v-model="form.password" />
       </div>
       <p v-if="error != null" class="error">{{ error.data?.message || 'Request failed!' }}</p>
       <button :disabled="loading" @click="login">Sign In</button>

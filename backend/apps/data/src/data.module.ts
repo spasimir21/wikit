@@ -1,6 +1,5 @@
 import { DatabaseProvider, models, relationships } from '@wikit/database';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ElasticsearchProvider } from '@wikit/elasticsearch';
 import { CreationsResolver } from './creations.resolver';
 import { RelationResolver } from './relation.resolver';
 import { CreationsService } from './creations.service';
@@ -24,7 +23,6 @@ import { Module } from '@nestjs/common';
   providers: [
     ConfigProvider('./config.yml'),
     DatabaseProvider(models, relationships),
-    ElasticsearchProvider,
     WikitService,
     TextService,
     RelationService,

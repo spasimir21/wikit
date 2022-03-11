@@ -85,15 +85,6 @@
       "compilerOptions": {
         "tsConfigPath": "apps/search/tsconfig.app.json"
       }
-    },
-    "elasticsearch": {
-      "type": "library",
-      "root": "libs/elasticsearch",
-      "entryFile": "index",
-      "sourceRoot": "libs/elasticsearch/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/elasticsearch/tsconfig.lib.json"
-      }
     }
   }
 }

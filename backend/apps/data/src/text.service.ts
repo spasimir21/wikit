@@ -1,17 +1,11 @@
-import { Client as ElasticClient } from '@elastic/elasticsearch';
 import { CreateText, Text, MatchText, MatchTexts } from '@wikit/database';
 import { DatabaseConnection } from '@wikit/neo4ogm';
-import { Inject, Injectable } from '@nestjs/common';
-import { Config, CONFIG } from '@wikit/config';
 import { TextDTO } from './model/text.model';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 class TextService {
-  constructor(
-    @Inject(CONFIG) private readonly config: Config,
-    private readonly database: DatabaseConnection,
-    private readonly elastic: ElasticClient
-  ) {}
+  constructor(private readonly database: DatabaseConnection) {}
 
   async getText(uuid: string): Promise<TextDTO | null> {
     const result = await this.database.run(MatchText, { uuid });
@@ -44,16 +38,6 @@ class TextService {
 
     const result = await this.database.run(CreateText, { uuid, wikit, text });
     if (result.records.length == 0) return null;
-
-    await this.elastic.create({
-      index: this.config.elasticsearch.index,
-      id: text.uuid,
-      document: {
-        wikit,
-        rating: 1,
-        text: textContent
-      }
-    });
 
     return text.uuid;
   }

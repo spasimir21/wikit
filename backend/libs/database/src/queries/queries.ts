@@ -1,7 +1,9 @@
 export { UpdateRelationRating } from './UpdateRelationRating';
-export { GetChildRelations } from './GetChildRelations';
+export { CreateFullTextIndex } from './CreateFullTextIndex';
 export { GetRelationRating } from './GetRelationRating';
 export { UpdateTextRating } from './UpdateTextRating';
+export { SearchSubTexts } from './SearchSubTexts';
+export { SearchRootText } from './SearchRootText';
 export { RelationExists } from './RelationExists';
 export { CreateRelation } from './CreateRelation';
 export { MatchRelations } from './MatchRelations';

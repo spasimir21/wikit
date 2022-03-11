@@ -1,9 +1,7 @@
-import { Client as ElasticClient } from '@elastic/elasticsearch';
 import { RatingType } from './model/ratingType.enum';
 import { DatabaseConnection } from '@wikit/neo4ogm';
-import { Inject, Injectable } from '@nestjs/common';
 import { RatingDTO } from './model/rating.model';
-import { Config, CONFIG } from '@wikit/config';
+import { Injectable } from '@nestjs/common';
 import {
   GetRatings,
   GetRelationRating,
@@ -16,11 +14,7 @@ import {
 
 @Injectable()
 class RatingService {
-  constructor(
-    @Inject(CONFIG) private readonly config: Config,
-    private readonly database: DatabaseConnection,
-    private readonly elastic: ElasticClient
-  ) {}
+  constructor(private readonly database: DatabaseConnection) {}
 
   async getRatings(uuid: string): Promise<RatingDTO[]> {
     const ratingsResult = await this.database.run(GetRatings, { uuid });
@@ -42,11 +36,6 @@ class RatingService {
     if (textRating == null) return false;
 
     await this.database.run(UpdateTextRating, { text, rating: textRating });
-    await this.elastic.update({
-      index: this.config.elasticsearch.index,
-      id: text,
-      doc: { rating: textRating }
-    });
 
     return true;
   }

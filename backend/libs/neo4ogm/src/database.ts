@@ -30,6 +30,10 @@ class DatabaseConnection {
     }
   }
 
+  async verifyConnection() {
+    return await this.driver.verifyConnectivity();
+  }
+
   async run<TParams, TResult>(
     query: Query<TParams, TResult>,
     params?: MapType<TParams>,

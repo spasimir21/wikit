@@ -1,8 +1,6 @@
-import { DatabaseProvider, models, relationships } from '@wikit/database';
-import { MappingTypeMapping } from '@elastic/elasticsearch/lib/api/types';
+import { CreateFullTextIndex, DatabaseProvider, models, relationships } from '@wikit/database';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { Client as ElasticClient } from '@elastic/elasticsearch';
-import { ElasticsearchProvider } from '@wikit/elasticsearch';
+import { DatabaseConnection } from '@wikit/neo4ogm';
 import { SearchResolver } from './search.resolver';
 import { SearchService } from './search.service';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -17,30 +15,21 @@ import { Module } from '@nestjs/common';
       // playground: false
     })
   ],
-  providers: [
-    ConfigProvider('./config.yml'),
-    DatabaseProvider(models, relationships),
-    ElasticsearchProvider,
-    SearchService,
-    SearchResolver
-  ]
+  providers: [ConfigProvider('./config.yml'), DatabaseProvider(models, relationships), SearchService, SearchResolver]
 })
 class SearchModule {
-  constructor(private readonly elastic: ElasticClient) {}
+  constructor(private readonly database: DatabaseConnection) {}
 
   async onModuleInit() {
-    await this.createElasticIndex('text', {
-      properties: {
-        wikit: { type: 'keyword', store: true },
-        rating: { type: 'rank_feature' },
-        text: { type: 'text' }
-      }
-    });
-  }
+    for (let i = 0; i < 100; i++) {
+      try {
+        await this.database.verifyConnection();
+        break;
+      } catch (error) {}
+      await new Promise(resolve => setTimeout(resolve, 10000));
+    }
 
-  private async createElasticIndex(name: string, mappings: MappingTypeMapping) {
-    if (await this.elastic.indices.exists({ index: name })) return;
-    await this.elastic.indices.create({ index: name, mappings });
+    await this.database.run(CreateFullTextIndex);
   }
 }
 

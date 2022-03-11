@@ -1,9 +1,6 @@
 # Wikit
 config.yml
-/data/elasticsearch/*
-/data/neo4j/*
-!/data/elasticsearch/.gitkeep
-!/data/neo4j/.gitkeep
+data
 
 # Logs
 logs
