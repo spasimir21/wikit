@@ -25,7 +25,7 @@ services:
   wikit-auth:
     build:
       context: ./backend
-      dockerfile: ../containers/auth.dockerfile
+      dockerfile: ${PWD:-..}/containers/auth.dockerfile
     volumes:
       - ./backend/dist:/wikit/dist
       - ./backend/config.yml:/wikit/config.yml
@@ -34,7 +34,7 @@ services:
   wikit-data:
     build:
       context: ./backend
-      dockerfile: ../containers/data.dockerfile
+      dockerfile: ${PWD:-..}/containers/data.dockerfile
     volumes:
       - ./backend/dist:/wikit/dist
       - ./backend/config.yml:/wikit/config.yml
@@ -43,7 +43,7 @@ services:
   wikit-rating:
     build:
       context: ./backend
-      dockerfile: ../containers/rating.dockerfile
+      dockerfile: ${PWD:-..}/containers/rating.dockerfile
     volumes:
       - ./backend/dist:/wikit/dist
       - ./backend/config.yml:/wikit/config.yml
@@ -52,7 +52,7 @@ services:
   wikit-search:
     build:
       context: ./backend
-      dockerfile: ../containers/search.dockerfile
+      dockerfile: ${PWD:-..}/containers/search.dockerfile
     volumes:
       - ./backend/dist:/wikit/dist
       - ./backend/config.yml:/wikit/config.yml

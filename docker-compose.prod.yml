@@ -19,24 +19,24 @@ services:
   wikit-auth:
     build:
       context: ./backend
-      dockerfile: ../containers/auth.prod.dockerfile
+      dockerfile: ${PWD:-..}/containers/auth.prod.dockerfile
     depends_on:
       - wikit-neo4j
   wikit-data:
     build:
       context: ./backend
-      dockerfile: ../containers/data.prod.dockerfile
+      dockerfile: ${PWD:-..}/containers/data.prod.dockerfile
     depends_on:
       - wikit-neo4j
   wikit-rating:
     build:
       context: ./backend
-      dockerfile: ../containers/rating.prod.dockerfile
+      dockerfile: ${PWD:-..}/containers/rating.prod.dockerfile
     depends_on:
       - wikit-neo4j
   wikit-search:
     build:
       context: ./backend
-      dockerfile: ../containers/search.prod.dockerfile
+      dockerfile: ${PWD:-..}/containers/search.prod.dockerfile
     depends_on:
       - wikit-neo4j
