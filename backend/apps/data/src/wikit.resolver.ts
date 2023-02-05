@@ -1,5 +1,5 @@
 import { GQLTokenGuard, GQLLoggedInGuard, GQLToken, Token } from '@wikit/utils';
-import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { WikitStatsDTO } from './model/wikit-stats.model';
 import { WikitService } from './wikit.service';
 import { WikitDTO } from './model/wikit.model';
@@ -19,9 +19,9 @@ class WikitResolver {
     return await this.wikitService.getWikits(uuids);
   }
 
-  @Query(() => [WikitStatsDTO])
-  async findWikits(@Args('title') title: string): Promise<WikitStatsDTO[]> {
-    return await this.wikitService.findWikits(title);
+  @Query(() => WikitStatsDTO, { nullable: true })
+  async findWikit(@Args('title') title: string): Promise<WikitStatsDTO | null> {
+    return await this.wikitService.findWikit(title);
   }
 
   @Mutation(() => ID)
@@ -30,10 +30,11 @@ class WikitResolver {
     @GQLToken() token: Token,
     @Args('title') title: string,
     @Args('text') text: string,
+    @Args('text_difficulty', { type: () => Int }) text_difficulty: number,
     @Args('parents', { type: () => [ID] }) parents: string[],
     @Args('children', { type: () => [ID] }) children: string[]
   ): Promise<string> {
-    return await this.wikitService.createWikit(token.data.uuid, title, text, parents, children);
+    return await this.wikitService.createWikit(token.data.uuid, title, text, text_difficulty, parents, children);
   }
 }
 

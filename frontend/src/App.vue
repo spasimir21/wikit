@@ -3,8 +3,10 @@ import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
-  <NavBar />
-  <router-view></router-view>
+  <div class="app">
+    <NavBar />
+    <router-view></router-view>
+  </div>
 </template>
 
 <style>
@@ -21,10 +23,26 @@ import NavBar from './components/NavBar.vue';
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
   font-family: 'Nunito Sans', sans-serif;
+  user-select: none;
 }
 
-body {
+.text {
+  user-select: text !important;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
   margin: 0px;
+}
+
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 [disabled='true'] {

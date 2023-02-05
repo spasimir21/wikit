@@ -25,12 +25,32 @@ class RatingResolver {
 
   @Mutation(() => Boolean)
   @UseGuards(GQLTokenGuard, GQLLoggedInGuard)
+  async rateTextDifficulty(
+    @GQLToken() token: Token,
+    @Args('text', { type: () => ID }) text: string,
+    @Args('difficulty', { type: () => Int }) difficulty: number
+  ): Promise<boolean> {
+    return await this.ratingService.rateTextDifficulty(text, token.data.uuid, difficulty);
+  }
+
+  @Mutation(() => Boolean)
+  @UseGuards(GQLTokenGuard, GQLLoggedInGuard)
   async rateRelation(
     @GQLToken() token: Token,
     @Args('relation', { type: () => ID }) relation: string,
     @Args('rating', { type: () => Int }) rating: number
   ): Promise<boolean> {
     return await this.ratingService.rateRelation(relation, token.data.uuid, rating);
+  }
+
+  @Mutation(() => Boolean)
+  @UseGuards(GQLTokenGuard, GQLLoggedInGuard)
+  async rateImage(
+    @GQLToken() token: Token,
+    @Args('image', { type: () => ID }) image: string,
+    @Args('rating', { type: () => Int }) rating: number
+  ): Promise<boolean> {
+    return await this.ratingService.rateImage(image, token.data.uuid, rating);
   }
 }
 

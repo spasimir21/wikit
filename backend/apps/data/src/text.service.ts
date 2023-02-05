@@ -13,9 +13,11 @@ class TextService {
     const { text, user, wikit } = result.records[0];
     return {
       uuid: text.uuid,
-      wikit: wikit.uuid,
+      wikit_id: wikit.uuid,
+      wikit_title: wikit.title,
       text: text.text,
-      rating: text.rating,
+      rating: text.rating * 4 + 1,
+      difficulty: Math.round(text.difficulty * 4 + 1),
       created_by: { uuid: user.uuid, username: user.username }
     };
   }
@@ -24,17 +26,20 @@ class TextService {
     const result = await this.database.run(MatchTexts, { uuids });
     return result.records.map(({ text, user, wikit }) => ({
       uuid: text.uuid,
-      wikit: wikit.uuid,
+      wikit_id: wikit.uuid,
+      wikit_title: wikit.title,
       text: text.text,
-      rating: text.rating,
+      rating: text.rating * 4 + 1,
+      difficulty: Math.round(text.difficulty * 4 + 1),
       created_by: { uuid: user.uuid, username: user.username }
     }));
   }
 
-  async createText(uuid: string, wikit: string, textContent: string): Promise<string | null> {
+  async createText(uuid: string, wikit: string, textContent: string, difficulty: number): Promise<string | null> {
     if (textContent.length < 10 || textContent.length > 2000) throw new Error('Text too long or too short!');
+    if (difficulty < 1 || difficulty > 5) throw new Error('Text difficulty must be between 1 and 5!');
 
-    const text = Text.create({ text: textContent });
+    const text = Text.create({ text: textContent, difficulty: (difficulty - 1) / 4 });
 
     const result = await this.database.run(CreateText, { uuid, wikit, text });
     if (result.records.length == 0) return null;

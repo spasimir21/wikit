@@ -11,7 +11,7 @@
 
 <style scoped>
 .home-view {
-  height: 100vh;
+  flex-grow: 1;
   display: grid;
   place-items: center;
 }

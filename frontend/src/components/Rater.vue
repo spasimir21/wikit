@@ -1,5 +1,6 @@
 <script setup="props" lang="ts">
 import { RateRelationRequest } from '../api/RateRelationRequest';
+import { RateImageRequest } from '../api/RateImageRequest';
 import { RateTextRequest } from '../api/RateTextRequest';
 import { useRequest } from '../api/api';
 import { useState } from '../state';
@@ -18,28 +19,27 @@ let rating = ref(0);
 function rate(i: number) {
   rating.value = i;
 
-  if (props.objectType === 'text') {
-    useRequest(RateTextRequest, {
-      token: state.token?.raw as string,
-      text: props.objectId,
-      rating: rating.value
-    });
-  } else {
-    useRequest(RateRelationRequest, {
-      token: state.token?.raw as string,
-      relation: props.objectId,
-      rating: rating.value
-    });
-  }
+  // prettier-ignore
+  const request =
+      props.objectType === 'text' ? RateTextRequest
+    : props.objectType === 'relation' ? RateRelationRequest
+    : RateImageRequest;
+
+  useRequest(request, {
+    token: state.token?.raw as string,
+    object: props.objectId,
+    rating: rating.value
+  });
 }
 </script>
 
 <template>
   <div class="rater" @mouseleave="hoveredRating = 0">
     <div
+      :key="i"
       :class="[
         'rating-point',
-        objectType === 'text' ? 'text-rating-point' : 'relation-rating-point',
+        `${objectType}-rating-point`,
         i <= hoveredRating ? 'hovered' : '',
         i <= rating ? 'filled' : 'empty'
       ]"
@@ -78,7 +78,8 @@ function rate(i: number) {
   filter: contrast(0.25) brightness(0.75);
 }
 
-.text-rating-point {
+.text-rating-point,
+.image-rating-point {
   --color: orange;
 }
 

@@ -15,7 +15,7 @@ class RelationService {
       uuid: relation.uuid,
       parent: relation.parent,
       child: relation.child,
-      rating: relation.rating,
+      rating: relation.rating * 4 + 1,
       created_by: { uuid: user.uuid, username: user.username }
     };
   }
@@ -26,7 +26,7 @@ class RelationService {
       uuid: relation.uuid,
       parent: relation.parent,
       child: relation.child,
-      rating: relation.rating,
+      rating: relation.rating * 4 + 1,
       created_by: { uuid: user.uuid, username: user.username }
     }));
   }

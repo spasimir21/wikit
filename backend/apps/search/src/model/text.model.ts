@@ -5,6 +5,9 @@ class TextDTO {
   @Field(() => String)
   query: string;
 
+  @Field(() => Number)
+  target_text_difficulty: number;
+
   @Field(() => ID)
   wikit: string;
 
@@ -14,7 +17,10 @@ class TextDTO {
   @Field(() => ID, { nullable: true })
   relation?: string;
 
-  @Field(() => [TextDTO], { nullable: true })
+  @Field(() => String, { nullable: true })
+  image?: string;
+
+  @Field(() => [TextDTO])
   sub?: TextDTO[];
 }
 

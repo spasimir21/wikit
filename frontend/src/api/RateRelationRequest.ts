@@ -8,7 +8,7 @@ interface RateRelationResult {
 
 interface RateRelationArgs {
   token: string;
-  relation: string;
+  object: string;
   rating: number;
 }
 
@@ -26,8 +26,8 @@ const RateRelationRequest: RequestFactory<RateRelationResult, RateRelationArgs, 
     },
     body: JSON.stringify({
       query: `
-        mutation($relation: ID!, $rating: Int!) {
-          success: rateRelation(relation: $relation, rating: $rating)
+        mutation($object: ID!, $rating: Int!) {
+          success: rateRelation(relation: $object, rating: $rating)
         }
       `,
       variables: args

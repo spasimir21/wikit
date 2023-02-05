@@ -38,7 +38,7 @@ async function createUsers(count) {
   return tokens;
 }
 
-async function createWikit(title, text, token) {
+async function createWikit(title, text, text_difficulty, token) {
   const req = await fetch('http://data.wikit.eu/graphql', {
     method: 'POST',
     headers: {
@@ -47,18 +47,18 @@ async function createWikit(title, text, token) {
     },
     body: JSON.stringify({
       query: `
-        mutation($title: String!, $text: String!) {
-          wikit: createWikit(title: $title, text: $text, parents: [], children: [])
+        mutation($title: String!, $text: String!, $text_difficulty: Int!) {
+          wikit: createWikit(title: $title, text: $text, text_difficulty: $text_difficulty, parents: [], children: [])
         }
       `,
-      variables: { title, text }
+      variables: { title, text, text_difficulty }
     })
   });
 
   return (await req.json()).data.wikit;
 }
 
-async function createText(wikit, text, token) {
+async function createText(wikit, text, difficulty, token) {
   const req = await fetch('http://data.wikit.eu/graphql', {
     method: 'POST',
     headers: {
@@ -67,11 +67,11 @@ async function createText(wikit, text, token) {
     },
     body: JSON.stringify({
       query: `
-        mutation($wikit: ID!, $text: String!) {
-          text: createText(wikit: $wikit, text: $text)
+        mutation($wikit: ID!, $text: String!, $difficulty: Int!) {
+          text: createText(wikit: $wikit, text: $text, difficulty: $difficulty)
         }
       `,
-      variables: { wikit, text }
+      variables: { wikit, text, difficulty }
     })
   });
 
@@ -118,6 +118,26 @@ async function rateText(text, rating, token) {
   await req.json();
 }
 
+async function rateTextDifficulty(text, difficulty, token) {
+  const req = await fetch('http://rating.wikit.eu/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      query: `
+        mutation($text: ID!, $difficulty: Int!) {
+          rateTextDifficulty(text: $text, difficulty: $difficulty)
+        }
+      `,
+      variables: { text, difficulty }
+    })
+  });
+
+  await req.json();
+}
+
 async function rateRelation(relation, rating, token) {
   const req = await fetch('http://rating.wikit.eu/graphql', {
     method: 'POST',
@@ -146,14 +166,16 @@ async function seed() {
   const wikits = {};
   for (const title of data.wikits) {
     console.log(`Creating Wikit '${title}'...`);
-    wikits[title] = await createWikit(title, data.texts[title][0], random(tokens));
+    const difficulty = Math.floor(Math.random() * 5) + 1;
+    wikits[title] = await createWikit(title, data.texts[title][0], difficulty, random(tokens));
   }
 
   const texts = [];
   for (const title in data.texts) {
     for (let i = 1; i < data.texts[title].length; i++) {
       console.log(`Creating Text '${title}' #${i}...`);
-      texts.push(await createText(wikits[title], data.texts[title][i], random(tokens)));
+      const difficulty = Math.floor(Math.random() * 5) + 1;
+      texts.push(await createText(wikits[title], data.texts[title][i], difficulty, random(tokens)));
     }
   }
 
@@ -169,6 +191,13 @@ async function seed() {
     for (let j = 1; j <= 5; j++) {
       console.log(`Rating Text ${i + 1}/${texts.length} #${j}...`);
       await rateText(texts[i], Math.floor(Math.random() * 5) + 1, random(tokens));
+    }
+  }
+
+  for (let i = 0; i < texts.length; i++) {
+    for (let j = 1; j <= 5; j++) {
+      console.log(`Rating Text Difficulty ${i + 1}/${texts.length} #${j}...`);
+      await rateTextDifficulty(texts[i], Math.floor(Math.random() * 5) + 1, random(tokens));
     }
   }
 

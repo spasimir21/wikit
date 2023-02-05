@@ -5,6 +5,9 @@ class WikitStatsDTO {
   @Field(() => ID)
   uuid: string;
 
+  @Field(() => String)
+  title: string;
+
   @Field(() => Int)
   textCount: number;
 

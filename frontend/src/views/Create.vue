@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import TextDifficultySelector from '../components/TextDifficultySelector.vue';
 import { CreateWikitRequest } from '../api/CreateWikitRequest';
 import { FindWikitsRequest } from '../api/FindWikitsRequest';
+import WikitText from '../components/WikitText.vue';
+import { reactive, ref, Ref } from 'vue';
 import { useRequest } from '../api/api';
 import { useRouter } from 'vue-router';
-import { reactive, Ref } from 'vue';
 import { useState } from '../state';
 import { id } from '../utils';
 
@@ -30,11 +32,14 @@ const form = reactive({
   children: [] as Relation[]
 });
 
+const textDifficulty = ref(3);
+
 function createWikit() {
   send({
     token: state.token?.raw as string,
     title: form.title,
     text: form.text,
+    text_difficulty: textDifficulty.value,
     parents: form.parents.filter(parent => parent.valid).map(parent => parent.uuid as string),
     children: form.children.filter(child => child.valid).map(child => child.uuid as string)
   });
@@ -60,9 +65,8 @@ function addParent() {
   form.parents.push(parent as any);
 
   after((error, result) => {
-    if (error || !result || result.errors || result.data.wikits.length == 0) return;
-    result?.data?.wikits.sort((a, b) => b.averageRating / b.textCount - a.averageRating / a.textCount);
-    parent.uuid = result.data.wikits[0].uuid;
+    if (error || !result || result.errors || result.data.wikit == null) return;
+    parent.uuid = result.data.wikit.uuid;
     parent.valid = true;
   });
 
@@ -91,9 +95,8 @@ function addChild() {
   form.children.push(child as any);
 
   after((error, result) => {
-    if (error || !result || result.data.wikits.length == 0) return;
-    result.data.wikits.sort((a, b) => b.averageRating / b.textCount - a.averageRating / a.textCount);
-    child.uuid = result.data.wikits[0].uuid;
+    if (error || !result || result.data.wikit == null) return;
+    child.uuid = result.data.wikit.uuid;
     child.valid = true;
   });
 
@@ -118,6 +121,12 @@ function removeChild(child: Relation) {
       <div class="section">
         <h1 class="section-header">Text</h1>
         <textarea class="text-input" placeholder="Explain the theme in 3-4 sentences" v-model="form.text"></textarea>
+        <p style="font-size: 20px; margin: 0px">Text preview:</p>
+        <WikitText text-id="" :citations="{}" :text="form.text" />
+        <div class="text-difficulty-selection">
+          <p>Text difficulty:</p>
+          <TextDifficultySelector :on-difficulty-selected="(difficulty: number) => (textDifficulty = difficulty)" />
+        </div>
       </div>
       <div class="section">
         <h1 class="section-header">Parents</h1>
@@ -166,7 +175,7 @@ function removeChild(child: Relation) {
         </div>
         <div class="add-relation">
           <input type="text" placeholder="Child Wikit" class="relation-input" v-model="form.child" />
-          <button class="relation-button" @click="addChild">Add Child</button>
+          <button class="relation-button" @click="addChild" style="width: 121px">Add Child</button>
         </div>
       </div>
       <p v-if="error != null || result?.errors" class="error">
@@ -179,10 +188,10 @@ function removeChild(child: Relation) {
 
 <style scoped>
 .create-view {
-  min-height: calc(100vh - var(--navbar-height) - 15px);
+  margin-top: 50px;
+  flex-grow: 1;
   display: grid;
   justify-items: center;
-  margin-top: calc(var(--navbar-height) + 15px);
 }
 
 .create-container {
@@ -213,6 +222,20 @@ function removeChild(child: Relation) {
   border-radius: 10px;
   padding: 5px 10px 5px 7px;
   font-size: 18px;
+}
+
+.text-difficulty-selection {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 10px;
+  height: fit-content;
+  margin-top: 5px;
+}
+
+.text-difficulty-selection p {
+  font-size: 20px;
+  margin: 0px;
 }
 
 .create-button {

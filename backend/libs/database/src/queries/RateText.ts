@@ -1,4 +1,4 @@
-import { IntRange, Query, UUID } from '@wikit/neo4ogm';
+import { Range, Query, UUID } from '@wikit/neo4ogm';
 import { Rated } from '../relationships/Rated';
 import { User } from '../models/User';
 import { Text } from '../models/Text';
@@ -11,7 +11,7 @@ const RateText = Query(
     SET rated.rating = $rating
     RETURN rated
   `,
-  { uuid: UUID, text: UUID, rating: IntRange(1, 100) },
+  { uuid: UUID, text: UUID, rating: Range(0, 1) },
   {}
 );
 

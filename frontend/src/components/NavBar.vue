@@ -53,7 +53,7 @@ function onSearchKeyup(event: KeyboardEvent) {
 <style scoped>
 #navbar {
   background-color: white;
-  position: fixed;
+  position: sticky;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -64,6 +64,7 @@ function onSearchKeyup(event: KeyboardEvent) {
   align-items: center;
   border-bottom: 1px solid var(--foreground-accent);
   padding: 10px;
+  z-index: 99;
 }
 
 .logo {

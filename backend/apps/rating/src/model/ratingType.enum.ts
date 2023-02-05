@@ -2,7 +2,9 @@ import { registerEnumType } from '@nestjs/graphql';
 
 enum RatingType {
   TEXT = 'TEXT',
-  RELATION = 'RELATION'
+  TEXT_DIFFICULTY = 'TEXT_DIFFICULTY',
+  RELATION = 'RELATION',
+  IMAGE = 'IMAGE'
 }
 
 registerEnumType(RatingType, { name: 'RatingType' });

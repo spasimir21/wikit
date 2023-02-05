@@ -4,7 +4,23 @@ enum Service {
   AUTH = 'auth',
   DATA = 'data',
   RATING = 'rating',
-  SEARCH = 'search'
+  SEARCH = 'search',
+  IMAGE = 'image'
 }
 
-export { DOMAIN, Service };
+const MathJaxConfig = {
+  'tex2jax': {
+    inlineMath: [['$', '$']],
+    displayMath: [['$$', '$$']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  'displayAlign': 'left',
+  'HTML-CSS': {
+    scale: 135,
+    linebreaks: { automatic: true }
+  },
+  '$wikitConfig': true
+};
+
+export { DOMAIN, Service, MathJaxConfig };

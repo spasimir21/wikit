@@ -6,7 +6,7 @@ const UpdateTextRating = Query(
     MATCH (text:${Text} { uuid: $text })
     SET text.rating = $rating
   `,
-  { text: UUID, rating: Range(1, 100) },
+  { text: UUID, rating: Range(0, 1) },
   {}
 );
 

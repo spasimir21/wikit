@@ -1,6 +1,7 @@
-import { CreateFullTextIndex, DatabaseProvider, models, relationships } from '@wikit/database';
+import { CreateTextSearchIndex, CreateImageSearchIndex, DatabaseProvider, models, relationships } from '@wikit/database';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { DatabaseConnection } from '@wikit/neo4ogm';
+import { createImageLoader } from './image.loader';
 import { SearchResolver } from './search.resolver';
 import { SearchService } from './search.service';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -9,13 +10,21 @@ import { Module } from '@nestjs/common';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: true
-      // playground: false
+      imports: [SearchModule],
+      useFactory: (searchService: SearchService) => ({
+        autoSchemaFile: true,
+        context: () => ({
+          imageLoader: createImageLoader(searchService)
+        })
+        // playground: false
+      }),
+      inject: [SearchService]
     })
   ],
-  providers: [ConfigProvider('./config.yml'), DatabaseProvider(models, relationships), SearchService, SearchResolver]
+  providers: [ConfigProvider('./config.yml'), DatabaseProvider(models, relationships), SearchService, SearchResolver],
+  exports: [SearchService]
 })
 class SearchModule {
   constructor(private readonly database: DatabaseConnection) {}
@@ -29,7 +38,8 @@ class SearchModule {
       await new Promise(resolve => setTimeout(resolve, 10000));
     }
 
-    await this.database.run(CreateFullTextIndex);
+    await this.database.run(CreateTextSearchIndex);
+    await this.database.run(CreateImageSearchIndex);
   }
 }
 

@@ -2,7 +2,7 @@ import { DOMAIN, Service } from '../constants';
 import { RequestFactory } from './api';
 
 interface FindWikitsResult {
-  data: { wikits: { uuid: string; textCount: number; averageRating: number }[] };
+  data: { wikit: { uuid: string; textCount: number; averageRating: number } };
   errors?: { message: string }[];
 }
 
@@ -22,7 +22,7 @@ const FindWikitsRequest: RequestFactory<FindWikitsResult, FindWikitsArgs, FindWi
     body: JSON.stringify({
       query: `
         query($title: String!) {
-          wikits: findWikits(title: $title) {
+          wikit: findWikit(title: $title) {
             uuid
             textCount
             averageRating

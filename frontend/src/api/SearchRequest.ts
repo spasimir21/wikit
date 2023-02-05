@@ -6,14 +6,17 @@ interface SearchResult {
     search?: {
       wikit: string;
       text: string;
+      image?: string;
       sub: {
         wikit: string;
         text: string;
         relation: string;
+        image?: string;
         sub: {
           wikit: string;
           text: string;
           relation: string;
+          image?: string;
         }[];
       }[];
     };
@@ -22,13 +25,16 @@ interface SearchResult {
 }
 
 interface SearchArgs {
+  root?: string;
   query: string;
+  target_text_difficulty: number;
 }
 
 interface SearchError {
   errors: { message: string }[];
 }
 
+// prettier-ignore
 const SearchRequest: RequestFactory<SearchResult, SearchArgs, SearchError> = args => ({
   url: `//${Service.SEARCH}.${DOMAIN}/graphql`,
   request: {
@@ -36,18 +42,21 @@ const SearchRequest: RequestFactory<SearchResult, SearchArgs, SearchError> = arg
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query: `
-        query($query: String!) {
-          search(query: $query) {
+        query(${args.root ? '$root: String!, ' : ''}$query: String!, $target_text_difficulty: Float!) {
+          search: search${args.root ? 'ForWikit' : ''}(${args.root ? 'wikit: $root, ' : ''}query: $query, target_text_difficulty: $target_text_difficulty) {
             wikit
             text
+            image
             sub {
               wikit
               text
               relation
+              image
               sub {
                 wikit
                 text
                 relation
+                image
               }
             }
           }

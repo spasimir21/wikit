@@ -9,14 +9,15 @@ import { User } from '../models/User';
 
 const CreateRelation = Query(
   `
-    MATCH (user:${User}) WHERE user.uuid = $uuid
-    MATCH (parent:${Wikit}) WHERE parent.uuid = $parent
-    MATCH (child:${Wikit}) WHERE child.uuid = $child
+    MATCH (user:${User} { uuid: $uuid })
+    MATCH (parent:${Wikit} { uuid: $parent })
+    MATCH (child:${Wikit} { uuid: $child })
     CREATE (relation:${Relation} $relation)
-    MERGE (relation)-[:${CreatedBy}]->(user)
-    MERGE (child)-[:${RelatesTo} { uuid: $relation.uuid, rating: 1 }]->(parent)
-    MERGE (parent)-[:${ParentRelation}]->(relation)
-    MERGE (child)-[:${ChildRelation}]->(relation)
+    SET relation.rating = 0.5
+    CREATE (relation)-[:${CreatedBy}]->(user)
+    CREATE (child)-[:${RelatesTo} { uuid: $relation.uuid, rating: 0.5 }]->(parent)
+    CREATE (parent)-[:${ParentRelation}]->(relation)
+    CREATE (child)-[:${ChildRelation}]->(relation)
     RETURN relation
   `,
   { uuid: UUID, parent: UUID, child: UUID, relation: Relation },

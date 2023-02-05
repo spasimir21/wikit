@@ -53,8 +53,8 @@ function useRequest<TResult = any, TArgs = {}, TError = any>(
         result.value = null;
       })
       .finally(() => {
-        loading.value = false;
         triggerAfter(error.value as any, result.value as any);
+        loading.value = false;
       });
   };
 

@@ -55,7 +55,7 @@ after((error, result) => {
 
 <style scoped>
 .register-view {
-  height: 100vh;
+  flex-grow: 1;
   display: grid;
   place-items: center;
 }

@@ -4,9 +4,11 @@ import { CreationsResolver } from './creations.resolver';
 import { RelationResolver } from './relation.resolver';
 import { CreationsService } from './creations.service';
 import { RelationService } from './relation.service';
+import { ImageResolver } from './image.resolver';
 import { WikitResolver } from './wikit.resolver';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigProvider } from '@wikit/config';
+import { ImageService } from './image.service';
 import { TextResolver } from './text.resolver';
 import { WikitService } from './wikit.service';
 import { TextService } from './text.service';
@@ -26,10 +28,12 @@ import { Module } from '@nestjs/common';
     WikitService,
     TextService,
     RelationService,
+    ImageService,
     CreationsService,
     WikitResolver,
     TextResolver,
     RelationResolver,
+    ImageResolver,
     CreationsResolver
   ]
 })

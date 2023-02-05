@@ -5,9 +5,9 @@ import { User } from '../models/User';
 
 const CreateWikit = Query(
   `
-    MATCH (user:${User}) WHERE user.uuid = $uuid
+    MATCH (user:${User} { uuid: $uuid })
     CREATE (wikit:${Wikit} $wikit)
-    MERGE (wikit)-[:${CreatedBy}]->(user)
+    CREATE (wikit)-[:${CreatedBy}]->(user)
     RETURN wikit
   `,
   { uuid: UUID, wikit: Wikit },

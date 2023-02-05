@@ -4,12 +4,14 @@ import { Nullable } from './typesystem/types';
 
 const $MODEL = Symbol('$MODEL');
 
-type Model<TName extends string = any, TSchema = any> = {
+type Model<TName extends string = string, TSchema = any> = {
   name: TName;
   schema: TSchema;
   create: (data?: Partial<MapType<TSchema>>) => MapType<TSchema>;
   toString(): TName;
 } & { [Key in keyof TSchema]: TSchema[Key] } & Required<TypeObject<MapType<TSchema>>>;
+
+type DBObjectOf<TModel extends Model> = TModel extends Model<string, infer T> ? MapType<T> : never;
 
 function Model<TName extends string, TSchema>(
   name: TName,
@@ -37,4 +39,4 @@ function getModel(node: any): Model {
   return node[$MODEL];
 }
 
-export { Model, getModel };
+export { Model, DBObjectOf, getModel };

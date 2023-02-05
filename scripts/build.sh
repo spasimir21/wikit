@@ -14,6 +14,9 @@ npm run build rating
 echo "Building search..."
 npm run build search
 
+echo "Building image..."
+npm run build image
+
 cd ../frontend
 
 echo "Building frontend..."

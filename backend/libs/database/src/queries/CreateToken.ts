@@ -7,7 +7,7 @@ const CreateToken = Query(
   `
     MATCH (user:${User}) WHERE user.uuid = $uuid
     CREATE (token:${Token} $token)
-    MERGE (token)-[:${Authenticates}]->(user)
+    CREATE (token)-[:${Authenticates}]->(user)
   `,
   { token: Token, uuid: UUID },
   {}

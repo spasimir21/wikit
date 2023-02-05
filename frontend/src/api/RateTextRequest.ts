@@ -8,7 +8,7 @@ interface RateTextResult {
 
 interface RateTextArgs {
   token: string;
-  text: string;
+  object: string;
   rating: number;
 }
 
@@ -26,8 +26,8 @@ const RateTextRequest: RequestFactory<RateTextResult, RateTextArgs, RateTextErro
     },
     body: JSON.stringify({
       query: `
-        mutation($text: ID!, $rating: Int!) {
-          success: rateText(text: $text, rating: $rating)
+        mutation($object: ID!, $rating: Int!) {
+          success: rateText(text: $object, rating: $rating)
         }
       `,
       variables: args

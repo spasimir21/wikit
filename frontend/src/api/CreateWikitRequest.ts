@@ -10,6 +10,7 @@ interface CreateWikitArgs {
   token: string;
   title: string;
   text: string;
+  text_difficulty: number;
   parents: string[];
   children: string[];
 }
@@ -28,8 +29,8 @@ const CreateWikitRequest: RequestFactory<CreateWikitResult, CreateWikitArgs, Cre
     },
     body: JSON.stringify({
       query: `
-        mutation($title: String!, $text: String!, $parents: [ID!]!, $children: [ID!]!) {
-          wikit: createWikit(title: $title, text: $text, parents: $parents, children: $children)
+        mutation($title: String!, $text: String!, $text_difficulty: Int!, $parents: [ID!]!, $children: [ID!]!) {
+          wikit: createWikit(title: $title, text: $text, text_difficulty: $text_difficulty, parents: $parents, children: $children)
         }
       `,
       variables: args

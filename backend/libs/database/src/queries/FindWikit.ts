@@ -3,7 +3,7 @@ import { Query, UUID } from '@wikit/neo4ogm';
 import { Wikit } from '../models/Wikit';
 import { Text } from '../models/Text';
 
-const FindWikits = Query(
+const FindWikit = Query(
   `
     MATCH (wikit:${Wikit} { title: $title })
     MATCH (text:${Text})-[:${Describes}]->(wikit)
@@ -13,4 +13,4 @@ const FindWikits = Query(
   { wikit: UUID, text_count: BigInt, average_rating: Number }
 );
 
-export { FindWikits };
+export { FindWikit };

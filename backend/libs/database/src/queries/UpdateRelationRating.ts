@@ -10,7 +10,7 @@ const UpdateRelationRating = Query(
     SET relation.rating = $rating
     SET relates.rating = $rating
   `,
-  { relation: UUID, rating: Range(1, 100) },
+  { relation: UUID, rating: Range(0, 1) },
   {}
 );
 

@@ -1,4 +1,5 @@
 import { FileInterceptor } from '@nestjs/platform-express';
+import { LoggedInGuard, TokenGuard } from '@wikit/utils';
 import { Config, CONFIG } from '@wikit/config';
 import { ImageService } from './image.service';
 import { Response } from 'express';
@@ -13,6 +14,7 @@ import {
   Post,
   Res,
   UploadedFile,
+  UseGuards,
   UseInterceptors
 } from '@nestjs/common';
 
@@ -33,13 +35,14 @@ class ImageController {
 
   @Post('upload')
   @HttpCode(HttpStatus.OK)
+  @UseGuards(TokenGuard, LoggedInGuard)
   @UseInterceptors(FileInterceptor('image'))
   async uploadImage(@Res() res: Response, @UploadedFile() image: Express.Multer.File) {
     try {
       const hash = await this.imageService.saveImage(image.buffer);
-      res.send(hash);
+      res.send({ hash });
     } catch (err) {
-      throw new HttpException('Upload failed!', HttpStatus.BAD_REQUEST);
+      throw new HttpException({ message: 'Upload failed!' }, HttpStatus.BAD_REQUEST);
     }
   }
 }

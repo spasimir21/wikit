@@ -16,6 +16,7 @@ services:
       - wikit-data
       - wikit-rating
       - wikit-search
+      - wikit-image
   wikit-auth:
     build:
       context: ./backend
@@ -40,3 +41,9 @@ services:
       dockerfile: ${PWD:-..}/containers/search.prod.dockerfile
     depends_on:
       - wikit-neo4j
+  wikit-image:
+    build:
+      context: ./backend
+      dockerfile: ${PWD:-..}/containers/image.prod.dockerfile
+    volumes:
+      - ./data/images:/wikit/images
