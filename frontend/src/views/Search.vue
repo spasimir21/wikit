@@ -17,7 +17,10 @@ const route = useRoute();
 
 const targetTextDifficulty = ref(3);
 
-const citations = reactive({} as any);
+const citations = reactive({
+  texts: {},
+  highlighted: null
+} as any);
 
 const {
   loading: searchLoading,
@@ -84,9 +87,8 @@ function updateSearch() {
     return;
   }
 
-  for (const textId in citations) {
-    citations[textId] = {};
-  }
+  citations.texts = {};
+  citations.highlighted = null;
 
   sendSearch({
     root: route.query.root as string | undefined,
@@ -110,7 +112,9 @@ updateSearch();
       {{
         searchError?.data?.errors[0].message ||
         searchResult?.errors?.[0].message ||
-        (searchResult?.data && searchResult?.data.search == null ? 'No results found for your search!' : 'Request failed!')
+        (searchResult?.data && searchResult?.data.search == null
+          ? 'No results found for your search!'
+          : 'Request failed!')
       }}
     </p>
     <p class="error" v-else-if="dataError || !dataResult || dataResult?.errors">
@@ -160,8 +164,8 @@ updateSearch();
       </Wikit>
       <Citations
         v-if="
-          Object.keys(citations)
-            .map(key => Object.keys(citations[key]).length)
+          Object.keys(citations.texts)
+            .map(key => Object.keys(citations.texts[key]).length)
             .some(n => n != 0)
         "
         :texts="texts"

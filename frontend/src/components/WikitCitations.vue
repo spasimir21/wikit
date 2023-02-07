@@ -4,6 +4,7 @@ import { ComponentInternalInstance, getCurrentInstance, onMounted, watch } from 
 const CITATION_REGEXP = /\[\s*(.*?)\s*\]\s*(.*?)\s*\-\s*(\S*)/;
 
 const props = defineProps({
+  textId: { type: String, required: true },
   serializedCitations: { type: String, required: true },
   citations: { type: Object, required: true }
 });
@@ -33,8 +34,10 @@ function parseCitations() {
 
   commentNode.textContent = JSON.stringify(citations);
 
+  if (props.citations.texts[props.textId] == null) props.citations.texts[props.textId] = {};
+
   for (const citation of citations) {
-    props.citations[citation.ref] = citation;
+    props.citations.texts[props.textId][citation.ref] = citation;
   }
 }
 

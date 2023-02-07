@@ -219,16 +219,28 @@ function selectImage(event: Event) {
         <div class="add-main-forum">
           <div class="section">
             <h1 class="section-header">Wikit</h1>
-            <input type="text" placeholder="Title" class="title-input" :value="titleResult?.data.wikit?.title" disabled />
+            <input
+              type="text"
+              placeholder="Title"
+              class="title-input"
+              :value="titleResult?.data.wikit?.title"
+              disabled
+            />
           </div>
           <div class="section">
             <h1 class="section-header">Text</h1>
-            <textarea class="text-input" placeholder="Explain the theme in 3-4 sentences" v-model="form.text.text"></textarea>
+            <textarea
+              class="text-input"
+              placeholder="Explain the theme in 3-4 sentences"
+              v-model="form.text.text"
+            ></textarea>
             <p style="font-size: 20px; margin: 0px">Text preview:</p>
-            <WikitText text-id="" :citations="{}" :text="form.text.text" />
+            <WikitText text-id="" :citations="{ texts: {}, highlighted: null }" :text="form.text.text" />
             <div class="text-difficulty-selection">
               <p>Text difficulty:</p>
-              <TextDifficultySelector :on-difficulty-selected="(difficulty: number) => (form.text.difficulty = difficulty)" />
+              <TextDifficultySelector
+                :on-difficulty-selected="(difficulty: number) => (form.text.difficulty = difficulty)"
+              />
             </div>
           </div>
           <div class="section">

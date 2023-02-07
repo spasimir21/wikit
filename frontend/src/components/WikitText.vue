@@ -30,9 +30,9 @@ const matchToNode: (match: Match) => any = (match: Match) => {
   // prettier-ignore
   switch (match.type) {
     case 'citationReference':
-      return h(CitationReference, { textId: props.textId, reference: (match.content[0] as TextMatch).content.cancelled });
+      return h(CitationReference, { citations: props.citations, textId: props.textId, reference: (match.content[0] as TextMatch).content.cancelled });
     case 'citations':
-      return h(WikitCitations, { serializedCitations: (match.content[0] as TextMatch).content.cancelled.trim(), citations: props.citations });
+      return h(WikitCitations, { textId: props.textId, serializedCitations: (match.content[0] as TextMatch).content.cancelled.trim(), citations: props.citations });
     case 'link':
       return h(WikitLink, { wikitTitle: (match.content[0] as TextMatch).content.cancelled.trim() });
     case 'inlineLatex':

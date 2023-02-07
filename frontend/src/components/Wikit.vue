@@ -21,8 +21,6 @@ const props = defineProps({
 const router = useRouter();
 const route = useRoute();
 const state = useState();
-
-if (props.citations[props.textId] == null) props.citations[props.textId] = {};
 </script>
 
 <template>
@@ -46,14 +44,18 @@ if (props.citations[props.textId] == null) props.citations[props.textId] = {};
       <div class="image-content" v-if="image != null">
         <div class="image">
           <img :src="`http://${Service.IMAGE}.${DOMAIN}/${image.hash}`" />
-          <Rater :class="['image-rater', state.token != null ? 'usable' : '']" object-type="image" :object-id="image.uuid" />
+          <Rater
+            :class="['image-rater', state.token != null ? 'usable' : '']"
+            object-type="image"
+            :object-id="image.uuid"
+          />
         </div>
         <p>
           {{ image.description }}
         </p>
       </div>
       <div class="text-content">
-        <WikitText :text-id="textId" :text="text" :citations="citations[textId]" />
+        <WikitText :text-id="textId" :text="text" :citations="citations" />
       </div>
     </div>
     <slot></slot>

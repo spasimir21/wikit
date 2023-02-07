@@ -1,10 +1,13 @@
 <script setup lang="ts">
 const props = defineProps({
+  citations: { type: Object, required: true },
   textId: { type: String, required: true },
   reference: { type: String, required: true }
 });
 
-function onClick() {}
+function onClick() {
+  props.citations.highlighted = `${props.textId}:${props.reference}`;
+}
 </script>
 
 <template>

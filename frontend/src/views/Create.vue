@@ -122,7 +122,7 @@ function removeChild(child: Relation) {
         <h1 class="section-header">Text</h1>
         <textarea class="text-input" placeholder="Explain the theme in 3-4 sentences" v-model="form.text"></textarea>
         <p style="font-size: 20px; margin: 0px">Text preview:</p>
-        <WikitText text-id="" :citations="{}" :text="form.text" />
+        <WikitText text-id="" :citations="{ texts: {}, highlighted: null }" :text="form.text" />
         <div class="text-difficulty-selection">
           <p>Text difficulty:</p>
           <TextDifficultySelector :on-difficulty-selected="(difficulty: number) => (textDifficulty = difficulty)" />
