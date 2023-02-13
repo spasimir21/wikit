@@ -1,1 +1,0 @@
-Disable * cors for all services
