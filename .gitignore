@@ -3,6 +3,7 @@ config.yml
 /data
 391.docx
 391.pdf
+data.zip
 
 # Logs
 logs
